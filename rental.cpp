@@ -7,7 +7,6 @@ int main()
     //Variables
     int meter_start;
     int meter_end;
-    int miles_travelled = meter_end - meter_start;
     int rental_days;
     string customer_name;
     char luxury_car;
@@ -15,7 +14,12 @@ int main()
     int total_base_charge;
     double first_hundred_miles;
     double next_four_hundred_miles;
-    double additional_miles;
+    double additional_miles100 = 0;
+    double additional_miles400 = 0;
+    double additional_miles500 = 0;
+    double additional_charge;
+    double seasonal_pricing;
+    double total_charge;
     int month;
 
     //User Input 
@@ -71,11 +75,45 @@ int main()
     if (month < 1 || month > 12){
         cout << "The month number must be in the range 1 through 12.";
         return 0;
+    }   //Seasonal Pricing Calculation
+        else{
+        {if (month == 12 || month <= 3){
+            seasonal_pricing = 0.27;     
+        }else{
+            seasonal_pricing = 0.21;
+        }
+        }
     }
+    //Calculations
+    int miles_travelled = meter_end - meter_start;
+
+    //Base Charge Calculation
+    total_base_charge = base_charge*rental_days;
+
+    //Additional Charge Calculation
+    if(miles_travelled <= 100){
+        additional_miles100 = miles_travelled;
+    }else if(miles_travelled > 100 || miles_travelled <= 500){
+        additional_miles100 = 100;
+        additional_miles400 = miles_travelled-100;
+    }else if(miles_travelled > 500){
+        additional_miles100 = 100;
+        additional_miles400 = 400;
+        additional_miles500 = miles_travelled - 500;
+    }
+
+
+    additional_charge = additional_miles100*0.27 + additional_miles400*seasonal_pricing
+     + additional_miles500*0.17;
+
+    //Total Charge Calculation
+    total_charge = total_base_charge + additional_charge;
 
     //Final Output 
     cout << "---" << endl;
-    cout << "The rental charge for " << customer_name << " is ";
+    cout << miles_travelled << endl;
+    cout << "The rental charge for " << customer_name << " is $" << total_charge;
+    
 
 
     return 0;
