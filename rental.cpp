@@ -93,7 +93,7 @@ int main()
     //Additional Charge Calculation
     if(miles_travelled <= 100){
         additional_miles100 = miles_travelled;
-    }else if(miles_travelled > 100 || miles_travelled <= 500){
+    }else if(miles_travelled > 100 && miles_travelled <= 500){
         additional_miles100 = 100;
         additional_miles400 = miles_travelled-100;
     }else if(miles_travelled > 500){
@@ -101,7 +101,6 @@ int main()
         additional_miles400 = 400;
         additional_miles500 = miles_travelled - 500;
     }
-
 
     additional_charge = additional_miles100*0.27 + additional_miles400*seasonal_pricing
      + additional_miles500*0.17;
@@ -112,6 +111,12 @@ int main()
     //Final Output 
     cout << "---" << endl;
     cout << miles_travelled << endl;
+    cout << seasonal_pricing << endl;
+    cout << additional_miles100 << endl;
+    cout << additional_miles400 << endl;
+    cout << additional_miles500 << endl;
+    cout << total_base_charge << endl;
+    cout << additional_charge << endl;
     cout << "The rental charge for " << customer_name << " is $" << total_charge;
     
 
