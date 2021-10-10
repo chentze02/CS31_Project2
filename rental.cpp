@@ -12,8 +12,6 @@ int main()
     char luxury_car;
     int base_charge;
     int total_base_charge;
-    double first_hundred_miles;
-    double next_four_hundred_miles;
     double additional_miles100 = 0;
     double additional_miles400 = 0;
     double additional_miles500 = 0;
@@ -110,13 +108,8 @@ int main()
 
     //Final Output 
     cout << "---" << endl;
-    cout << miles_travelled << endl;
-    cout << seasonal_pricing << endl;
-    cout << additional_miles100 << endl;
-    cout << additional_miles400 << endl;
-    cout << additional_miles500 << endl;
-    cout << total_base_charge << endl;
-    cout << additional_charge << endl;
+    cout.setf(ios::fixed);
+    cout.precision(2);
     cout << "The rental charge for " << customer_name << " is $" << total_charge;
     
 
